@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="SaberComponents.csproj.user" Condition="Exists('SaberComponents.csproj.user')"/>
-
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>9</LangVersion>

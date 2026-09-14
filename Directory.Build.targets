@@ -31,7 +31,8 @@
             $(BeatSaberDir)\Plugins" />
         
         <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(BeatSaberDir)\Libs\%(Filename)%(Extension)')" />
-        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(UnityProjDir)\Assets\Assemblies\%(Filename)%(Extension)')" />
+        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(UnityProjDir)\Assets\Assemblies\%(Filename)%(Extension)')"
+              Condition="'$(UnityProjDir)' != '' and Exists('$(UnityProjDir)\Assets\Assemblies')" />
         
         <Copy SourceFiles="@(TempPluginsFiles)" DestinationFiles="
             @(TempPluginsFiles->'$(BeatSaberDir)\Plugins\%(Filename)%(Extension)')" />
