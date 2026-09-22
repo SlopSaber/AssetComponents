@@ -3,40 +3,44 @@ using UnityEngine.Events;
 
 namespace SaberComponents.Components
 {
-    [AddComponentMenu("Beat Saber/Saber Components/AccuracyReachedEvent")]
-    public class AccuracyReachedEvent : EventFilterBehaviour
+    [AddComponentMenu("Beat Saber/SaberComponents/AccuracyReachedEvent")]
+    [RequireComponent(typeof(EventManager))]
+    public class AccuracyReachedEvent : MonoBehaviour
     {
+        [Tooltip("Percentage accuracy between 0 and 1")]
         public float target = 1f;
-        public UnityEvent onAccuracyReachTarget;
-        public UnityEvent onAccuracyHigherThanTarget;
-        public UnityEvent onAccuracyLowerThanTarget;
-    
+        public UnityEvent accuracyReached;
+        public UnityEvent accuracyHigherThanTarget;
+        public UnityEvent accuracyLowerThanTarget;
+
+        private EventManager eventManager;
         private float prevAccuracy;
 
         private void OnEnable()
         {
-            EventManager.OnAccuracyChanged.AddListener(OnAccuracyReached);
+            if (eventManager == null) eventManager = GetComponent<EventManager>();
+            eventManager.accuracyChanged.AddListener(OnAccuracyReached);
             prevAccuracy = 1f;
         }
 
         private void OnDisable()
         {
-            EventManager.OnAccuracyChanged.RemoveListener(OnAccuracyReached);
+            eventManager.accuracyChanged.RemoveListener(OnAccuracyReached);
         }
 
         private void OnAccuracyReached(float accuracy)
         {
             if ((prevAccuracy > target && accuracy < target) || (prevAccuracy < target && accuracy > target))
             {
-                onAccuracyReachTarget.Invoke();
+                accuracyReached.Invoke();
             }
             if (prevAccuracy < target && accuracy > target)
             {
-                onAccuracyHigherThanTarget.Invoke();
+                accuracyHigherThanTarget.Invoke();
             }
             if (prevAccuracy > target && accuracy < target)
             {
-                onAccuracyLowerThanTarget.Invoke();
+                accuracyLowerThanTarget.Invoke();
             }
             prevAccuracy = accuracy;
         }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace SaberComponents.Components
 {
-    [AddComponentMenu("Beat Saber/Saber Components/SaberDescriptor")]
+    [AddComponentMenu("Beat Saber/SaberComponents/SaberDescriptor")]
     public class SaberDescriptor : MonoBehaviour
     {
         public string SaberName = nameof(SaberName);
         public string AuthorName = nameof(AuthorName);
         public string Description = nameof(Description);
-        public Sprite CoverImage;
+        public Texture2D CoverImage;
     }
 }
