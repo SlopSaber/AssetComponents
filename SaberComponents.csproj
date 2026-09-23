@@ -1,6 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <BeatSaberDir Condition="'$(BeatSaberDir)' == ''">D:\BSManager\BSInstances\1.45.1</BeatSaberDir>
+        <GameDirectory>$(BeatSaberDir)</GameDirectory>
+        <ImportBSMTTargets>true</ImportBSMTTargets>
+        <BSMTProjectType>BSIPA</BSMTProjectType>
+        <GenerateManifest>false</GenerateManifest>
+        <CopyPDB>false</CopyPDB>
+        <DisableCopyToGame>false</DisableCopyToGame>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>9</LangVersion>
         <Nullable>disable</Nullable>
@@ -12,6 +19,11 @@
 
     <ItemGroup>
         <None Include="SaberComponents.csproj.user" Condition="Exists('SaberComponents.csproj.user')"/>
+    </ItemGroup>
+    <ItemGroup>
+        <OutputCopy Include="$(OutputPath)$(AssemblyName).dll" OutputPath="Libs\$(AssemblyName).dll" />
+        <OutputCopy Include="$(MSBuildProjectDirectory)\manifest.json" OutputPath="Plugins\$(AssemblyName).manifest" />
+        <PackageReference Include="BeatSaberModdingTools.Tasks" Version="2.0.0-beta7" PrivateAssets="all" IncludeAssets="build;contentfiles;analyzers;buildtransitive" />
     </ItemGroup>
 
     <ItemGroup>
