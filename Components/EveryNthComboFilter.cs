@@ -26,7 +26,7 @@ namespace SaberComponents.Components
 
         private void OnComboStep(int combo)
         {
-            if (combo % comboStep == 0 && combo != 0)
+            if (comboStep > 0 && combo != 0 && combo % comboStep == 0)
             {
                 nthComboReached.Invoke();
             }
