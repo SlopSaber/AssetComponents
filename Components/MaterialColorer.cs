@@ -19,7 +19,6 @@ namespace AssetComponents.Components
         [Space]
         
         [SerializeField]
-        [ConditionalField(nameof(meshRenderer), typeof(DoesHaveMultipleMaterialsCondition))]
         [Tooltip("Array index of the material from the Mesh Renderer should be colored")]
         private int materialIndex;
         
@@ -51,12 +50,6 @@ namespace AssetComponents.Components
         {
             if (!meshRenderer) return;
             meshRenderer.SetPropertyBlock(MaterialPropertyBlock);
-        }
-        
-        private class DoesHaveMultipleMaterialsCondition : ConditionalFieldAttribute.ICondition
-        {
-            public bool GetState(object target) =>
-                target is MeshRenderer meshRenderer && meshRenderer && meshRenderer.sharedMaterials.Length > 1;
         }
     }
 }
