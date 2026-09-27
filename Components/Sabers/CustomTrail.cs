@@ -9,7 +9,7 @@ namespace AssetComponents.Components.Sabers
         public Transform bottom;
         
         [Space]
-        public Material material;
+        public Material[] materials;
         
         [Space]
         [Range(0, 1), Tooltip("Duration of the furthest section of the trail in seconds")]

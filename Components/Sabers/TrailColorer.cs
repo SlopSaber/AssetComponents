@@ -33,7 +33,7 @@ namespace AssetComponents.Components.Sabers
         [Tooltip("The color given to the property is always multiplied by the multiplier color; white has no effect")]
         private Color multiplierColor = Color.white;
 
-        public Material Material => customTrail.material;
+        public Material Material => customTrail.materials[materialIndex];
         public MaterialPropertyBlock MaterialPropertyBlock => materialPropertyBlock ??= new();
         
         public string PropertyName => propertyName;
