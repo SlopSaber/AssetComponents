@@ -18,6 +18,10 @@ namespace AssetComponents.Components.Sabers
         [Space]
         
         [SerializeField]
+        [Tooltip("Array index of the material from the Mesh Renderer should be colored")]
+        private int materialIndex;
+        
+        [SerializeField]
         [Tooltip("The name of the target color property of the trail material")]
         private string propertyName = "_Color";
         
@@ -28,6 +32,10 @@ namespace AssetComponents.Components.Sabers
         [SerializeField]
         [Tooltip("When Color Type is set to an environment color, toggle between normal and boost colors on boost event")]
         private bool useColorBoostEvents;
+
+        [SerializeField]
+        [Tooltip("Whether to use this color for the vertex colors of the trail's mesh")]
+        private bool applyToVertexColor;
         
         [SerializeField]
         [Tooltip("The color given to the property is always multiplied by the multiplier color; white has no effect")]
@@ -39,6 +47,7 @@ namespace AssetComponents.Components.Sabers
         public string PropertyName => propertyName;
         public ColorSchemeType ColorSchemeType => colorSchemeType;
         public bool UseColorBoostEvents => useColorBoostEvents;
+        public bool ApplyToVertexColor => applyToVertexColor;
         public Color MultiplierColor => multiplierColor;
     }
 }
