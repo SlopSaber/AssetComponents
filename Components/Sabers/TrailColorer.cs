@@ -42,6 +42,7 @@ namespace AssetComponents.Components.Sabers
         private Color multiplierColor = Color.white;
 
         public Material Material => customTrail.materials[materialIndex];
+        public int MaterialIndex => materialIndex;
         public MaterialPropertyBlock MaterialPropertyBlock => materialPropertyBlock ??= new();
         
         public string PropertyName => propertyName;

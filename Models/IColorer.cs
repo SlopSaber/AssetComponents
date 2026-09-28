@@ -4,12 +4,13 @@ namespace AssetComponents.Models
 {
     public interface IColorer
     {
-        public Material Material { get; }
-        public MaterialPropertyBlock MaterialPropertyBlock { get; }
+        Material Material { get; }
+        int MaterialIndex { get; }
+        MaterialPropertyBlock MaterialPropertyBlock { get; }
         
-        public string PropertyName { get; }
-        public ColorSchemeType ColorSchemeType { get; }
-        public bool UseColorBoostEvents { get; }
-        public Color MultiplierColor { get; }
+        string PropertyName { get; }
+        ColorSchemeType ColorSchemeType { get; }
+        bool UseColorBoostEvents { get; }
+        Color MultiplierColor { get; }
     }
 }

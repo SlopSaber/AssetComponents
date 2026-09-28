@@ -39,6 +39,7 @@ namespace AssetComponents.Components
         private Color multiplierColor = Color.white;
 
         public Material Material => meshRenderer.sharedMaterials[materialIndex];
+        public int MaterialIndex => materialIndex;
         public MaterialPropertyBlock MaterialPropertyBlock => materialPropertyBlock ??= new();
         
         public string PropertyName => propertyName;
@@ -46,10 +47,10 @@ namespace AssetComponents.Components
         public bool UseColorBoostEvents => useColorBoostEvents;
         public Color MultiplierColor => multiplierColor;
         
-        public void UpdateRendererProperties()
+        public void UpdatePropertyBlock()
         {
             if (!meshRenderer) return;
-            meshRenderer.SetPropertyBlock(MaterialPropertyBlock);
+            meshRenderer.SetPropertyBlock(MaterialPropertyBlock, materialIndex);
         }
     }
 }
