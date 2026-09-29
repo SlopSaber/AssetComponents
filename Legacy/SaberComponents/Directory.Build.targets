@@ -1,0 +1,34 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+
+        <!-- Temporary directory used to zip -->
+        <ZipTempDir>$(IntermediateOutputPath)BeatSaberPackage</ZipTempDir>
+
+        <!-- Final zip location -->
+        <OutputZipPath>$(OutputPath)zip</OutputZipPath>
+        <OutputZip>$(OutputZipPath)\$(AssemblyName).zip</OutputZip>
+
+    </PropertyGroup>
+
+    <Target Name="CreateZip" AfterTargets="Build">
+        <MakeDir Directories="
+            $(ZipTempDir)\Libs;
+            $(ZipTempDir)\Plugins;
+            $(OutputZipPath)" />
+
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ZipTempDir)\Libs" />
+        <Copy SourceFiles="$(ProjectDir)manifest.json" DestinationFiles="$(ZipTempDir)\Plugins\$(AssemblyName).manifest" />
+
+        <ZipDirectory SourceDirectory="$(ZipTempDir)" DestinationFile="$(OutputZip)" Overwrite="true" />
+
+        <ItemGroup>
+            <TempLibsFiles Include="$(ZipTempDir)\Libs\**\*" />
+            <TempPluginsFiles Include="$(ZipTempDir)\Plugins\**\*" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(UnityProjDir)\Assets\Assemblies\%(Filename)%(Extension)')"
+              Condition="'$(DisableCopyToGame)' != 'true' and '$(UnityProjDir)' != '' and Exists('$(UnityProjDir)\Assets\Assemblies')" />
+
+        <RemoveDir Directories="$(ZipTempDir)" />
+    </Target>
+</Project>

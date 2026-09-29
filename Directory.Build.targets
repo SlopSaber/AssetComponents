@@ -28,13 +28,17 @@
         
         <MakeDir Directories=" 
             $(BeatSaberDir)\IPA\Pending\Libs;
-            $(BeatSaberDir)\IPA\Pending\Plugins" />
-        
-        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(BeatSaberDir)\IPA\Pending\Libs\%(Filename)%(Extension)')" />
-        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(UnityProjDir)\Assets\Assemblies\%(Filename)%(Extension)')" />
-        
+            $(BeatSaberDir)\IPA\Pending\Plugins"
+            Condition="'$(DisableCopyToGame)' != 'true' and '$(BeatSaberDir)' != ''" />
+
+        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(BeatSaberDir)\IPA\Pending\Libs\%(Filename)%(Extension)')"
+              Condition="'$(DisableCopyToGame)' != 'true' and '$(BeatSaberDir)' != ''" />
+        <Copy SourceFiles="@(TempLibsFiles);" DestinationFiles="@(TempLibsFiles->'$(UnityProjDir)\Assets\Assemblies\%(Filename)%(Extension)')"
+              Condition="'$(DisableCopyToGame)' != 'true' and '$(UnityProjDir)' != '' and Exists('$(UnityProjDir)\Assets\Assemblies')" />
+
         <Copy SourceFiles="@(TempPluginsFiles)" DestinationFiles="
-            @(TempPluginsFiles->'$(BeatSaberDir)\IPA\Pending\Plugins\%(Filename)%(Extension)')" />
+            @(TempPluginsFiles->'$(BeatSaberDir)\IPA\Pending\Plugins\%(Filename)%(Extension)')"
+            Condition="'$(DisableCopyToGame)' != 'true' and '$(BeatSaberDir)' != ''" />
         
         <RemoveDir Directories="$(ZipTempDir)" />
     </Target>

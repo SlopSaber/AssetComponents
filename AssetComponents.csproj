@@ -17,6 +17,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Remove="Legacy/SaberComponents/**/*.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Reference Include="mscorlib"/>
         <Reference Include="netstandard"/>
         <Reference Include="System"/>

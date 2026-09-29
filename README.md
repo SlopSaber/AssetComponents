@@ -2,6 +2,8 @@
 
 Beat Saber class library for components used on custom sabers.
 
+`AssetComponents.csproj` builds the current library. `Legacy/SaberComponents/SaberComponents.csproj` builds `SaberComponents.dll` for existing `.saber2` assets that reference the old assembly. Build each project separately. Set `DisableCopyToGame=true` to keep a build out of the game installation.
+
 ## Building
 
 Create a `AssetComponents.csproj.user` file in the same directory as `AssetComponents.csproj`:
