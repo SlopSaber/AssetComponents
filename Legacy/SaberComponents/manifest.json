@@ -5,7 +5,7 @@
   "author": "qqrz997",
   "version": "1.0.0",
   "description": "Component library for custom sabers",
-  "gameVersion": "1.45.1",
+  "gameVersion": "1.45.2",
   "files": [
     "Libs/SaberComponents.dll"
   ]
